@@ -116,10 +116,16 @@ class PlanetFavorites(db.Model):
     planet_id: Mapped[int] = mapped_column(ForeignKey('planets.pla_id'))
     planet: Mapped['Planets'] = relationship(back_populates='favorite_by')
 
+    def __repr__(self):
+     return f'Al usuario {self.user_id} le gusta el planeta {self.planet_id}' 
+
 class StarshipFavorites(db.Model):
     __tablename__ = 'starship_favorites'
     id: Mapped[int] = mapped_column(primary_key=True)
     user_id: Mapped[int] = mapped_column(ForeignKey('user.id'))
     user: Mapped['User'] = relationship(back_populates='ship_favorites')
     starship_id: Mapped[int] = mapped_column(ForeignKey('starships.ship_id'))
-    starship: Mapped['Starships'] = relationship(back_populates='favorite_by')            
+    starship: Mapped['Starships'] = relationship(back_populates='favorite_by')
+
+    def __repr__(self):
+     return f'Al usuario {self.user_id} le gusta la nave {self.starship_id}'             
